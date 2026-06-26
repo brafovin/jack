@@ -194,10 +194,135 @@
     .toast { position:fixed; bottom:2rem; right:2rem; background:linear-gradient(135deg,var(--green),var(--cyan)); color:#fff; padding:1rem 1.8rem; border-radius:14px; font-weight:700; font-size:.95rem; box-shadow:0 8px 30px rgba(16,185,129,.4); transform:translateY(120%); opacity:0; transition:transform .3s ease,opacity .3s ease; z-index:999; }
     .toast.show { transform:translateY(0); opacity:1; }
 
+    /* POSTER SECTION */
+    .poster-section {
+      background: linear-gradient(160deg, #f0f7f0 0%, #e8f4ff 40%, #f5fff5 100%);
+      position: relative; overflow: hidden;
+      padding: 5rem 2rem 0;
+      color: #111;
+    }
+    .poster-section::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 45%; height: 100%;
+      background: linear-gradient(135deg, rgba(180,230,180,.25), rgba(160,210,255,.2));
+      clip-path: ellipse(80% 100% at 100% 50%);
+      pointer-events: none;
+    }
+    /* subtle leaf blobs */
+    .poster-section::after {
+      content: '🍃';
+      position: absolute; top: 1.5rem; right: 2.5rem;
+      font-size: 3.5rem; opacity: .18; pointer-events: none;
+      filter: hue-rotate(10deg);
+    }
+    .poster-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .poster-headline {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1;
+      color: #111;
+      margin-bottom: .4rem;
+    }
+    .poster-sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 400;
+      color: #3a7a50;
+      margin-bottom: 1rem;
+    }
+    .poster-divider {
+      width: 48px; height: 3px;
+      background: #3a7a50;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .poster-tagline {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 2rem;
+    }
+    .poster-features { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+    .poster-features li {
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .pf-icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      border-radius: 50%;
+      border: 1.5px solid #ccc;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,.8);
+    }
+    .pf-text strong { display: block; font-size: .9rem; font-weight: 700; color: #111; margin-bottom: .15rem; }
+    .pf-text p { font-size: .8rem; color: #555; line-height: 1.4; margin: 0; }
+    .pf-highlighted {
+      background: rgba(255,255,255,.8);
+      border: 1.5px solid #c8e6c9;
+      border-radius: 12px;
+      padding: .8rem 1rem;
+    }
+    .pf-highlighted .pf-icon {
+      border-color: #3a7a50;
+      background: #e8f5e9;
+    }
+    .poster-right {
+      display: flex; justify-content: center; align-items: flex-end;
+    }
+    .poster-right svg {
+      filter: drop-shadow(-8px 16px 40px rgba(0,0,0,.25)) drop-shadow(4px 4px 16px rgba(0,0,0,.15));
+      max-width: 100%;
+    }
+    .poster-brand {
+      text-align: center;
+      padding: 2.5rem 0 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .poster-brand-name {
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: 14px;
+      color: #111;
+      text-transform: uppercase;
+    }
+    .poster-brand-line {
+      display: flex; align-items: center; justify-content: center; gap: .8rem;
+      color: #888; font-size: .75rem; letter-spacing: 4px; margin-top: .2rem;
+    }
+    .poster-brand-line::before,
+    .poster-brand-line::after {
+      content: ''; flex: 1; max-width: 60px; height: 1px; background: #ccc;
+    }
+    .poster-badges {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid #ddd;
+      position: relative; z-index: 1;
+    }
+    .poster-badge {
+      padding: 1.2rem 1rem;
+      text-align: center;
+      border-right: 1px solid #ddd;
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+    }
+    .poster-badge:last-child { border-right: none; }
+    .poster-badge-icon { font-size: 1.4rem; }
+    .poster-badge strong { font-size: .72rem; letter-spacing: .5px; color: #111; display: block; }
+    .poster-badge small { font-size: .68rem; color: #777; }
+
     @media (max-width:768px) {
       .hero-inner { grid-template-columns:1fr; }
       .hero-visual { order:-1; }
       .specs-container { grid-template-columns:1fr; }
+      .poster-inner { grid-template-columns:1fr; }
+      .poster-right { order:-1; }
+      .poster-badges { grid-template-columns:1fr 1fr; }
+      .poster-badge { border-bottom: 1px solid #ddd; }
       nav { display:none; }
     }
   </style>
@@ -234,6 +359,94 @@
     <div class="hero-visual">
       <div class="fan-spin-ring"></div>
       <div id="hero-fan"></div>
+    </div>
+  </div>
+</section>
+
+<!-- POSTER SECTION -->
+<section class="poster-section">
+  <div class="poster-inner">
+
+    <!-- Left: Text -->
+    <div class="poster-left">
+      <h2 class="poster-headline">SELBST­LADEND</h2>
+      <p class="poster-sub">Angetrieben von der Natur</p>
+      <div class="poster-divider"></div>
+      <p class="poster-tagline">Bleib cool – überall.</p>
+
+      <ul class="poster-features">
+        <li>
+          <div class="pf-icon">☀️</div>
+          <div class="pf-text">
+            <strong>Solarbetrieb</strong>
+            <p>Das integrierte Solarpanel wandelt Sonnenlicht in Energie um.</p>
+          </div>
+        </li>
+        <li>
+          <div class="pf-icon">🔋</div>
+          <div class="pf-text">
+            <strong>Wiederaufladbarer Akku</strong>
+            <p>Speichert Energie für eine lange, mobile Nutzung.</p>
+          </div>
+        </li>
+        <li>
+          <div class="pf-icon">💨</div>
+          <div class="pf-text">
+            <strong>Starker Luftstrom</strong>
+            <p>Leise, effizient und kraftvoll.</p>
+          </div>
+        </li>
+        <li>
+          <div class="pf-icon">•••</div>
+          <div class="pf-text">
+            <strong>LED-Anzeige</strong>
+            <p>Akkustand auf einen Blick.</p>
+          </div>
+        </li>
+        <li class="pf-highlighted">
+          <div class="pf-icon">🍃</div>
+          <div class="pf-text">
+            <strong>Nachhaltige Energie</strong>
+            <p>Sauber. Erneuerbar. Zuverlässig.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right: Fan illustration -->
+    <div class="poster-right">
+      <div id="poster-fan"></div>
+    </div>
+
+  </div>
+
+  <!-- Brand -->
+  <div class="poster-brand">
+    <div class="poster-brand-name">BRISE</div>
+    <div class="poster-brand-line">AUTOCHARGE</div>
+  </div>
+
+  <!-- Bottom badges -->
+  <div class="poster-badges">
+    <div class="poster-badge">
+      <span class="poster-badge-icon">🍃</span>
+      <strong>UMWELTFREUNDLICH</strong>
+      <small>Zero Emission</small>
+    </div>
+    <div class="poster-badge">
+      <span class="poster-badge-icon">⚡</span>
+      <strong>ENERGIE UNABHÄNGIG</strong>
+      <small>Überall einsetzbar</small>
+    </div>
+    <div class="poster-badge">
+      <span class="poster-badge-icon">🧳</span>
+      <strong>MOBIL &amp; LEICHT</strong>
+      <small>Perfekt für unterwegs</small>
+    </div>
+    <div class="poster-badge">
+      <span class="poster-badge-icon">🛡️</span>
+      <strong>ROBUST &amp; ZUVERLÄSSIG</strong>
+      <small>Für jedes Abenteuer</small>
     </div>
   </div>
 </section>
@@ -546,6 +759,15 @@ document.addEventListener('DOMContentLoaded', () => {
     heroEl.innerHTML = buildFan({
       id:'h', W:460, H:100, cx:230, cy:255,
       r:155, handle:true, base:true
+    });
+  }
+
+  /* Poster: fan with handle + base, but lighter tones for white bg */
+  const posterEl = document.getElementById('poster-fan');
+  if (posterEl) {
+    posterEl.innerHTML = buildFan({
+      id:'p', W:440, H:100, cx:220, cy:245,
+      r:148, handle:true, base:true
     });
   }
 
