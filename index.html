@@ -15,573 +15,9 @@
       --red:    #ef4444;
       --blue:   #3b82f6;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0f0f0f; color: #fff; overflow-x: hidden; }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    /* ── HEADER ── */
-    header {
-      background: linear-gradient(135deg, var(--purple), var(--pink), var(--cyan));
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 30px rgba(124,58,237,0.5);
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      text-shadow: 0 0 20px rgba(255,255,255,0.8);
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: opacity .2s;
-    }
-    nav a:hover { opacity: .75; }
-
-    .cart-btn {
-      background: #fff;
-      color: var(--purple);
-      border: none;
-      padding: .5rem 1.2rem;
-      border-radius: 99px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: .9rem;
-      transition: transform .2s;
-    }
-    .cart-btn:hover { transform: scale(1.05); }
-
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(160deg, #1a0033, #001a3a, #003322);
-      padding: 5rem 2rem 4rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; left: 50%;
-      transform: translateX(-50%);
-      width: 800px; height: 800px;
-      background: radial-gradient(circle, rgba(124,58,237,.35) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: linear-gradient(90deg, var(--yellow), var(--orange));
-      color: #000;
-      font-weight: 800;
-      font-size: .75rem;
-      letter-spacing: 2px;
-      padding: .35rem 1rem;
-      border-radius: 99px;
-      margin-bottom: 1.2rem;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--cyan), var(--purple), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      color: #aaa;
-      font-size: 1.15rem;
-      max-width: 550px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--purple), var(--pink));
-      color: #fff;
-      border: none;
-      padding: .9rem 2.5rem;
-      border-radius: 99px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 0 30px rgba(236,72,153,.4);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(236,72,153,.6); }
-
-    .btn-secondary {
-      background: transparent;
-      color: #fff;
-      border: 2px solid rgba(255,255,255,.3);
-      padding: .9rem 2.5rem;
-      border-radius: 99px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: border-color .2s, background .2s;
-    }
-    .btn-secondary:hover { border-color: var(--cyan); background: rgba(6,182,212,.1); }
-
-    /* ── PRODUCT CARD ── */
-    .product-section {
-      padding: 5rem 2rem;
-      background: #111;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 3rem;
-    }
-    .section-title span {
-      background: linear-gradient(90deg, var(--cyan), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .product-card {
-      background: linear-gradient(145deg, #1c1c1c, #222);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.08);
-      transition: transform .3s, box-shadow .3s;
-      position: relative;
-    }
-    .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.6);
-    }
-
-    .card-badge {
-      position: absolute;
-      top: 1rem; left: 1rem;
-      background: linear-gradient(135deg, var(--red), var(--orange));
-      color: #fff;
-      font-size: .7rem;
-      font-weight: 800;
-      padding: .3rem .8rem;
-      border-radius: 99px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      z-index: 2;
-    }
-
-    .card-img {
-      width: 100%;
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-img-1 { background: linear-gradient(135deg, #1a0050, #003366); }
-    .card-img-2 { background: linear-gradient(135deg, #003322, #001a3a); }
-    .card-img-3 { background: linear-gradient(135deg, #330022, #1a0033); }
-
-    .card-img .glow {
-      position: absolute;
-      width: 150px; height: 150px;
-      border-radius: 50%;
-      filter: blur(40px);
-      opacity: .6;
-    }
-    .card-img-1 .glow { background: var(--purple); }
-    .card-img-2 .glow { background: var(--green); }
-    .card-img-3 .glow { background: var(--pink); }
-
-    .card-emoji { position: relative; z-index: 1; }
-
-    .card-body { padding: 1.5rem; }
-
-    .card-tag {
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: .5rem;
-    }
-    .tag-purple { color: var(--purple); }
-    .tag-green  { color: var(--green); }
-    .tag-pink   { color: var(--pink); }
-
-    .card-title {
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: .5rem;
-    }
-
-    .card-desc {
-      color: #888;
-      font-size: .88rem;
-      line-height: 1.6;
-      margin-bottom: 1.2rem;
-    }
-
-    .card-price {
-      display: flex;
-      align-items: center;
-      gap: .8rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .price-now {
-      font-size: 1.6rem;
-      font-weight: 900;
-      background: linear-gradient(90deg, var(--yellow), var(--orange));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .price-old {
-      font-size: .95rem;
-      color: #555;
-      text-decoration: line-through;
-    }
-
-    .stars { color: var(--yellow); font-size: .9rem; margin-bottom: 1rem; }
-
-    .add-cart {
-      width: 100%;
-      padding: .8rem;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .2s, opacity .2s;
-    }
-    .add-cart:hover { transform: scale(1.02); opacity: .9; }
-
-    .btn-c1 { background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #fff; }
-    .btn-c2 { background: linear-gradient(135deg, var(--green), var(--cyan)); color: #fff; }
-    .btn-c3 { background: linear-gradient(135deg, var(--pink), var(--orange)); color: #fff; }
-
-    /* ── FEATURES ── */
-    .features-section {
-      padding: 5rem 2rem;
-      background: linear-gradient(180deg, #0a001a, #000a1a, #000d0a);
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .feature-card {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: transform .3s, border-color .3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 18px;
-      opacity: 0;
-      transition: opacity .3s;
-    }
-    .feature-card:hover { transform: translateY(-5px); }
-    .feature-card:hover::before { opacity: 1; }
-
-    .fc-1::before { background: linear-gradient(135deg, rgba(245,158,11,.08), transparent); }
-    .fc-2::before { background: linear-gradient(135deg, rgba(59,130,246,.08), transparent); }
-    .fc-3::before { background: linear-gradient(135deg, rgba(16,185,129,.08), transparent); }
-    .fc-4::before { background: linear-gradient(135deg, rgba(124,58,237,.08), transparent); }
-    .fc-5::before { background: linear-gradient(135deg, rgba(236,72,153,.08), transparent); }
-
-    .fc-1:hover { border-color: var(--yellow); }
-    .fc-2:hover { border-color: var(--blue); }
-    .fc-3:hover { border-color: var(--green); }
-    .fc-4:hover { border-color: var(--purple); }
-    .fc-5:hover { border-color: var(--pink); }
-
-    .feature-icon {
-      width: 64px; height: 64px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      margin: 0 auto 1rem;
-    }
-
-    .fi-1 { background: linear-gradient(135deg, var(--yellow), var(--orange)); }
-    .fi-2 { background: linear-gradient(135deg, var(--blue), var(--cyan)); }
-    .fi-3 { background: linear-gradient(135deg, var(--green), var(--cyan)); }
-    .fi-4 { background: linear-gradient(135deg, var(--purple), var(--pink)); }
-    .fi-5 { background: linear-gradient(135deg, var(--pink), var(--red)); }
-
-    .feature-card h3 {
-      font-size: 1rem;
-      font-weight: 800;
-      margin-bottom: .5rem;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-    }
-    .feature-card p { color: #777; font-size: .85rem; line-height: 1.6; position: relative; z-index: 1; }
-    .feature-card h3 { position: relative; z-index: 1; }
-    .feature-icon { position: relative; z-index: 1; }
-
-    /* ── SPECS ── */
-    .specs-section {
-      padding: 5rem 2rem;
-      background: #111;
-    }
-
-    .specs-container {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .spec-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      border-radius: 12px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.07);
-    }
-
-    .spec-label { color: #777; font-size: .88rem; }
-    .spec-value { font-weight: 700; font-size: .95rem; }
-
-    .sv-1 { color: var(--yellow); }
-    .sv-2 { color: var(--cyan); }
-    .sv-3 { color: var(--green); }
-    .sv-4 { color: var(--purple); }
-    .sv-5 { color: var(--pink); }
-    .sv-6 { color: var(--orange); }
-
-    /* ── REVIEWS ── */
-    .reviews-section {
-      padding: 5rem 2rem;
-      background: linear-gradient(180deg, #080010, #000810);
-    }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .review-card {
-      padding: 1.8rem;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.07);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .rc-1 { background: linear-gradient(145deg, rgba(124,58,237,.15), rgba(236,72,153,.08)); }
-    .rc-2 { background: linear-gradient(145deg, rgba(6,182,212,.15), rgba(59,130,246,.08)); }
-    .rc-3 { background: linear-gradient(145deg, rgba(16,185,129,.15), rgba(245,158,11,.08)); }
-
-    .review-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-
-    .reviewer-avatar {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .av-1 { background: linear-gradient(135deg, var(--purple), var(--pink)); }
-    .av-2 { background: linear-gradient(135deg, var(--cyan), var(--blue)); }
-    .av-3 { background: linear-gradient(135deg, var(--green), var(--yellow)); }
-
-    .reviewer-name { font-weight: 700; font-size: .95rem; }
-    .reviewer-date { color: #666; font-size: .78rem; margin-top: .1rem; }
-
-    .review-stars { color: var(--yellow); font-size: .85rem; margin-bottom: .8rem; }
-    .review-text { color: #999; font-size: .88rem; line-height: 1.7; }
-
-    /* ── CTA ── */
-    .cta-section {
-      padding: 6rem 2rem;
-      text-align: center;
-      background: linear-gradient(135deg, #1a0033, #00123a, #002211);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 50%,
-        rgba(124,58,237,.2),
-        rgba(6,182,212,.1),
-        transparent);
-      pointer-events: none;
-    }
-
-    .cta-section h2 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    .cta-section p {
-      color: #aaa;
-      font-size: 1.1rem;
-      margin-bottom: 2.5rem;
-      position: relative;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      position: relative;
-    }
-
-    .btn-cta-1 {
-      background: linear-gradient(135deg, var(--yellow), var(--orange));
-      color: #000;
-      border: none;
-      padding: 1rem 3rem;
-      border-radius: 99px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 0 40px rgba(245,158,11,.4);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .btn-cta-1:hover { transform: scale(1.05); box-shadow: 0 0 60px rgba(245,158,11,.6); }
-
-    .btn-cta-2 {
-      background: linear-gradient(135deg, var(--cyan), var(--blue));
-      color: #fff;
-      border: none;
-      padding: 1rem 3rem;
-      border-radius: 99px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 0 40px rgba(6,182,212,.3);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .btn-cta-2:hover { transform: scale(1.05); box-shadow: 0 0 60px rgba(6,182,212,.5); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #080808;
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    .footer-logo {
-      font-size: 1.5rem;
-      font-weight: 900;
-      background: linear-gradient(90deg, var(--purple), var(--cyan), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
-    .footer-links a {
-      color: #666;
-      text-decoration: none;
-      font-size: .88rem;
-      transition: color .2s;
-    }
-    .footer-links a:hover { color: var(--cyan); }
-
-    .footer-copy { color: #444; font-size: .8rem; }
-
-    /* ── CART TOAST ── */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: linear-gradient(135deg, var(--green), var(--cyan));
-      color: #fff;
-      padding: 1rem 1.8rem;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: .95rem;
-      box-shadow: 0 8px 30px rgba(16,185,129,.4);
-      transform: translateY(120%);
-      opacity: 0;
-      transition: transform .3s ease, opacity .3s ease;
-      z-index: 999;
-    }
-    .toast.show { transform: translateY(0); opacity: 1; }
-
-    /* ── BANNER ── */
     .promo-banner {
       background: linear-gradient(90deg, var(--purple), var(--pink), var(--cyan), var(--green), var(--yellow), var(--orange), var(--pink), var(--purple));
       background-size: 300% 100%;
@@ -591,27 +27,187 @@
       font-size: .82rem;
       font-weight: 700;
       letter-spacing: 1px;
-      color: #fff;
     }
-    @keyframes shift {
-      0%   { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
+    @keyframes shift { 0%{background-position:0% 50%} 100%{background-position:100% 50%} }
 
-    @media (max-width: 640px) {
-      .specs-container { grid-template-columns: 1fr; }
-      nav { display: none; }
+    header {
+      background: linear-gradient(135deg, var(--purple), var(--pink), var(--cyan));
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 4px 30px rgba(124,58,237,.5);
+    }
+    .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 20px rgba(255,255,255,.8); }
+    nav a { color:#fff; text-decoration:none; margin-left:1.5rem; font-weight:600; font-size:.95rem; transition:opacity .2s; }
+    nav a:hover { opacity:.75; }
+    .cart-btn { background:#fff; color:var(--purple); border:none; padding:.5rem 1.2rem; border-radius:99px; font-weight:700; cursor:pointer; font-size:.9rem; transition:transform .2s; }
+    .cart-btn:hover { transform:scale(1.05); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(160deg, #1a0033, #001a3a, #003322);
+      padding: 4rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%);
+      width:800px; height:800px;
+      background:radial-gradient(circle, rgba(124,58,237,.35) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center;
+    }
+    .hero-badge {
+      display:inline-block;
+      background:linear-gradient(90deg,var(--yellow),var(--orange));
+      color:#000; font-weight:800; font-size:.75rem; letter-spacing:2px;
+      padding:.35rem 1rem; border-radius:99px; margin-bottom:1.2rem; text-transform:uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.8rem); font-weight:900;
+      background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      line-height:1.1; margin-bottom:1rem;
+    }
+    .hero p { color:#aaa; font-size:1.05rem; line-height:1.7; margin-bottom:2rem; }
+    .hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn-primary {
+      background:linear-gradient(135deg,var(--purple),var(--pink)); color:#fff; border:none;
+      padding:.9rem 2.5rem; border-radius:99px; font-size:1rem; font-weight:700; cursor:pointer;
+      box-shadow:0 0 30px rgba(236,72,153,.4); transition:transform .2s,box-shadow .2s;
+    }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 50px rgba(236,72,153,.6); }
+    .btn-secondary {
+      background:transparent; color:#fff; border:2px solid rgba(255,255,255,.3);
+      padding:.9rem 2.5rem; border-radius:99px; font-size:1rem; font-weight:700; cursor:pointer;
+      transition:border-color .2s,background .2s;
+    }
+    .btn-secondary:hover { border-color:var(--cyan); background:rgba(6,182,212,.1); }
+    .hero-visual { display:flex; justify-content:center; align-items:center; position:relative; }
+    .hero-visual svg { filter: drop-shadow(0 0 40px rgba(124,58,237,.4)) drop-shadow(0 20px 40px rgba(0,0,0,.8)); max-width:100%; }
+    .fan-spin-ring {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:360px; height:360px; border-radius:50%;
+      border:2px solid rgba(124,58,237,.15);
+      animation:spin-slow 20s linear infinite;
+    }
+    @keyframes spin-slow { to { transform:translate(-50%,-50%) rotate(360deg); } }
+
+    /* PRODUCT CARDS */
+    .product-section { padding:5rem 2rem; background:#111; }
+    .section-title { text-align:center; font-size:2rem; font-weight:800; margin-bottom:3rem; }
+    .section-title span { background:linear-gradient(90deg,var(--cyan),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .product-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; max-width:1200px; margin:0 auto; }
+    .product-card { background:linear-gradient(145deg,#1c1c1c,#222); border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,.08); transition:transform .3s,box-shadow .3s; position:relative; }
+    .product-card:hover { transform:translateY(-8px); box-shadow:0 20px 60px rgba(0,0,0,.6); }
+    .card-badge { position:absolute; top:1rem; left:1rem; color:#fff; font-size:.7rem; font-weight:800; padding:.3rem .8rem; border-radius:99px; letter-spacing:1px; text-transform:uppercase; z-index:2; }
+    .card-img { width:100%; height:240px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+    .card-img-1 { background:linear-gradient(135deg,#1a0050,#003366); }
+    .card-img-2 { background:linear-gradient(135deg,#003322,#001a3a); }
+    .card-img-3 { background:linear-gradient(135deg,#330022,#1a0033); }
+    .card-img svg { filter:drop-shadow(0 8px 20px rgba(0,0,0,.7)); }
+    .card-glow { position:absolute; width:180px; height:180px; border-radius:50%; filter:blur(50px); opacity:.3; pointer-events:none; }
+    .card-body { padding:1.5rem; }
+    .card-tag { font-size:.7rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:.5rem; }
+    .tag-purple { color:var(--purple); } .tag-green { color:var(--green); } .tag-pink { color:var(--pink); }
+    .card-title { font-size:1.3rem; font-weight:800; margin-bottom:.5rem; }
+    .card-desc { color:#888; font-size:.88rem; line-height:1.6; margin-bottom:1.2rem; }
+    .card-price { display:flex; align-items:center; gap:.8rem; margin-bottom:1.2rem; }
+    .price-now { font-size:1.6rem; font-weight:900; background:linear-gradient(90deg,var(--yellow),var(--orange)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .price-old { font-size:.95rem; color:#555; text-decoration:line-through; }
+    .stars { color:var(--yellow); font-size:.9rem; margin-bottom:1rem; }
+    .add-cart { width:100%; padding:.8rem; border:none; border-radius:12px; font-size:1rem; font-weight:700; cursor:pointer; transition:transform .2s,opacity .2s; }
+    .add-cart:hover { transform:scale(1.02); opacity:.9; }
+    .btn-c1 { background:linear-gradient(135deg,var(--purple),var(--cyan)); color:#fff; }
+    .btn-c2 { background:linear-gradient(135deg,var(--green),var(--cyan)); color:#fff; }
+    .btn-c3 { background:linear-gradient(135deg,var(--pink),var(--orange)); color:#fff; }
+
+    /* FEATURES */
+    .features-section { padding:5rem 2rem; background:linear-gradient(180deg,#0a001a,#000a1a,#000d0a); }
+    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; max-width:1100px; margin:0 auto; }
+    .feature-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:2rem 1.5rem; text-align:center; transition:transform .3s,border-color .3s; position:relative; overflow:hidden; }
+    .feature-card::before { content:''; position:absolute; inset:0; border-radius:18px; opacity:0; transition:opacity .3s; }
+    .feature-card:hover { transform:translateY(-5px); }
+    .feature-card:hover::before { opacity:1; }
+    .fc-1::before{background:linear-gradient(135deg,rgba(245,158,11,.08),transparent)} .fc-1:hover{border-color:var(--yellow)}
+    .fc-2::before{background:linear-gradient(135deg,rgba(59,130,246,.08),transparent)} .fc-2:hover{border-color:var(--blue)}
+    .fc-3::before{background:linear-gradient(135deg,rgba(16,185,129,.08),transparent)} .fc-3:hover{border-color:var(--green)}
+    .fc-4::before{background:linear-gradient(135deg,rgba(124,58,237,.08),transparent)} .fc-4:hover{border-color:var(--purple)}
+    .fc-5::before{background:linear-gradient(135deg,rgba(236,72,153,.08),transparent)} .fc-5:hover{border-color:var(--pink)}
+    .feature-icon { width:64px; height:64px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; margin:0 auto 1rem; position:relative; z-index:1; }
+    .fi-1{background:linear-gradient(135deg,var(--yellow),var(--orange))}
+    .fi-2{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+    .fi-3{background:linear-gradient(135deg,var(--green),var(--cyan))}
+    .fi-4{background:linear-gradient(135deg,var(--purple),var(--pink))}
+    .fi-5{background:linear-gradient(135deg,var(--pink),var(--red))}
+    .feature-card h3 { font-size:1rem; font-weight:800; margin-bottom:.5rem; letter-spacing:.5px; text-transform:uppercase; position:relative; z-index:1; }
+    .feature-card p { color:#777; font-size:.85rem; line-height:1.6; position:relative; z-index:1; }
+
+    /* SPECS */
+    .specs-section { padding:5rem 2rem; background:#111; }
+    .specs-container { max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .spec-row { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.5rem; border-radius:12px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); }
+    .spec-label { color:#777; font-size:.88rem; }
+    .spec-value { font-weight:700; font-size:.95rem; }
+    .sv-1{color:var(--yellow)} .sv-2{color:var(--cyan)} .sv-3{color:var(--green)} .sv-4{color:var(--purple)} .sv-5{color:var(--pink)} .sv-6{color:var(--orange)}
+
+    /* REVIEWS */
+    .reviews-section { padding:5rem 2rem; background:linear-gradient(180deg,#080010,#000810); }
+    .reviews-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; max-width:1100px; margin:0 auto; }
+    .review-card { padding:1.8rem; border-radius:16px; border:1px solid rgba(255,255,255,.07); }
+    .rc-1{background:linear-gradient(145deg,rgba(124,58,237,.15),rgba(236,72,153,.08))}
+    .rc-2{background:linear-gradient(145deg,rgba(6,182,212,.15),rgba(59,130,246,.08))}
+    .rc-3{background:linear-gradient(145deg,rgba(16,185,129,.15),rgba(245,158,11,.08))}
+    .review-header { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+    .reviewer-avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; font-weight:700; flex-shrink:0; }
+    .av-1{background:linear-gradient(135deg,var(--purple),var(--pink))}
+    .av-2{background:linear-gradient(135deg,var(--cyan),var(--blue))}
+    .av-3{background:linear-gradient(135deg,var(--green),var(--yellow))}
+    .reviewer-name { font-weight:700; font-size:.95rem; }
+    .reviewer-date { color:#666; font-size:.78rem; margin-top:.1rem; }
+    .review-stars { color:var(--yellow); font-size:.85rem; margin-bottom:.8rem; }
+    .review-text { color:#999; font-size:.88rem; line-height:1.7; }
+
+    /* CTA */
+    .cta-section { padding:6rem 2rem; text-align:center; background:linear-gradient(135deg,#1a0033,#00123a,#002211); position:relative; overflow:hidden; }
+    .cta-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(124,58,237,.2),rgba(6,182,212,.1),transparent); pointer-events:none; }
+    .cta-section h2 { font-size:clamp(2rem,5vw,3.5rem); font-weight:900; margin-bottom:1rem; position:relative; }
+    .cta-section p { color:#aaa; font-size:1.1rem; margin-bottom:2.5rem; position:relative; }
+    .cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; position:relative; }
+    .btn-cta-1 { background:linear-gradient(135deg,var(--yellow),var(--orange)); color:#000; border:none; padding:1rem 3rem; border-radius:99px; font-size:1.05rem; font-weight:800; cursor:pointer; box-shadow:0 0 40px rgba(245,158,11,.4); transition:transform .2s,box-shadow .2s; }
+    .btn-cta-1:hover { transform:scale(1.05); box-shadow:0 0 60px rgba(245,158,11,.6); }
+    .btn-cta-2 { background:linear-gradient(135deg,var(--cyan),var(--blue)); color:#fff; border:none; padding:1rem 3rem; border-radius:99px; font-size:1.05rem; font-weight:800; cursor:pointer; box-shadow:0 0 40px rgba(6,182,212,.3); transition:transform .2s,box-shadow .2s; }
+    .btn-cta-2:hover { transform:scale(1.05); box-shadow:0 0 60px rgba(6,182,212,.5); }
+
+    footer { background:#080808; border-top:1px solid rgba(255,255,255,.07); padding:3rem 2rem; text-align:center; }
+    .footer-logo { font-size:1.5rem; font-weight:900; background:linear-gradient(90deg,var(--purple),var(--cyan),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1rem; }
+    .footer-links { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .footer-links a { color:#666; text-decoration:none; font-size:.88rem; transition:color .2s; }
+    .footer-links a:hover { color:var(--cyan); }
+    .footer-copy { color:#444; font-size:.8rem; }
+
+    .toast { position:fixed; bottom:2rem; right:2rem; background:linear-gradient(135deg,var(--green),var(--cyan)); color:#fff; padding:1rem 1.8rem; border-radius:14px; font-weight:700; font-size:.95rem; box-shadow:0 8px 30px rgba(16,185,129,.4); transform:translateY(120%); opacity:0; transition:transform .3s ease,opacity .3s ease; z-index:999; }
+    .toast.show { transform:translateY(0); opacity:1; }
+
+    @media (max-width:768px) {
+      .hero-inner { grid-template-columns:1fr; }
+      .hero-visual { order:-1; }
+      .specs-container { grid-template-columns:1fr; }
+      nav { display:none; }
     }
   </style>
 </head>
 <body>
 
-<!-- Promo Banner -->
 <div class="promo-banner">
   ☀️ SOMMER SALE – BIS ZU 30% RABATT &nbsp;|&nbsp; KOSTENLOSER VERSAND AB 49€ &nbsp;|&nbsp; NACHHALTIG &amp; ZUKUNFTSSICHER ☀️
 </div>
 
-<!-- Header -->
 <header>
   <div class="logo">⚡ BRISE</div>
   <nav>
@@ -623,124 +219,94 @@
   <button class="cart-btn" onclick="showCart()">🛒 Warenkorb <span id="cart-count">(0)</span></button>
 </header>
 
-<!-- Hero -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">🌱 Eco-Tech 2025</div>
-  <h1>BRISE AUTOCHARGE<br>Solar Fan</h1>
-  <p>Der einzige Ventilator, der sich selbst auflädt. Solarenergie trifft auf kraftvollen Luftstrom – für drinnen und draußen.</p>
-  <div class="hero-buttons">
-    <button class="btn-primary" onclick="addToCart('BRISE Pro', 89.99)">Jetzt kaufen – 89,99 €</button>
-    <button class="btn-secondary">Mehr erfahren ↓</button>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">🌱 Eco-Tech 2025</div>
+      <h1>SELF-CHARGING.<br>POWERED BY<br>NATURE.</h1>
+      <p>Integriertes Solarmodul hält dich überall kühl – ohne Steckdose. Leise, stark und vollständig selbstladend.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="addToCart('BRISE Pro',89.99)">Jetzt kaufen – 89,99 €</button>
+        <button class="btn-secondary">Mehr erfahren ↓</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="fan-spin-ring"></div>
+      <div id="hero-fan"></div>
+    </div>
   </div>
 </section>
 
-<!-- Products -->
+<!-- PRODUCTS -->
 <section class="product-section">
-  <h2 class="section-title"><span>Unsere Produkte</span></h2>
+  <h2 class="section-title"><span>Unsere Modelle</span></h2>
   <div class="product-grid">
 
-    <!-- Card 1 -->
     <div class="product-card">
-      <div class="card-badge">Bestseller</div>
+      <div class="card-badge" style="background:linear-gradient(135deg,#ef4444,#f97316)">Bestseller</div>
       <div class="card-img card-img-1">
-        <div class="glow"></div>
-        <span class="card-emoji">🌀</span>
+        <div class="card-glow" style="background:var(--purple)"></div>
+        <div id="card-fan-1"></div>
       </div>
       <div class="card-body">
         <div class="card-tag tag-purple">Solar Edition</div>
         <div class="card-title">BRISE AUTOCHARGE Pro</div>
         <div class="card-desc">Mit integriertem Hochleistungs-Solarmodul. Ideal für Camping, Terrasse und Büro. Li-Ion Akku für 20+ Stunden Laufzeit.</div>
-        <div class="stars">★★★★★ <span style="color:#666;font-size:.8rem;">(284 Bewertungen)</span></div>
-        <div class="card-price">
-          <span class="price-now">89,99 €</span>
-          <span class="price-old">129,99 €</span>
-        </div>
-        <button class="add-cart btn-c1" onclick="addToCart('BRISE Pro', 89.99)">In den Warenkorb</button>
+        <div class="stars">★★★★★ <span style="color:#666;font-size:.8rem;">(284)</span></div>
+        <div class="card-price"><span class="price-now">89,99 €</span><span class="price-old">129,99 €</span></div>
+        <button class="add-cart btn-c1" onclick="addToCart('BRISE Pro',89.99)">In den Warenkorb</button>
       </div>
     </div>
 
-    <!-- Card 2 -->
     <div class="product-card">
       <div class="card-badge" style="background:linear-gradient(135deg,#10b981,#06b6d4)">Neu</div>
       <div class="card-img card-img-2">
-        <div class="glow"></div>
-        <span class="card-emoji">💨</span>
+        <div class="card-glow" style="background:var(--green)"></div>
+        <div id="card-fan-2"></div>
       </div>
       <div class="card-body">
         <div class="card-tag tag-green">Eco Edition</div>
         <div class="card-title">BRISE AUTOCHARGE Lite</div>
         <div class="card-desc">Kompakt und leicht – perfekt für unterwegs. USB-C Schnellladung + Solar-Backup. 3 Stufen, 360° Rotation.</div>
-        <div class="stars">★★★★☆ <span style="color:#666;font-size:.8rem;">(117 Bewertungen)</span></div>
-        <div class="card-price">
-          <span class="price-now">59,99 €</span>
-          <span class="price-old">79,99 €</span>
-        </div>
-        <button class="add-cart btn-c2" onclick="addToCart('BRISE Lite', 59.99)">In den Warenkorb</button>
+        <div class="stars">★★★★☆ <span style="color:#666;font-size:.8rem;">(117)</span></div>
+        <div class="card-price"><span class="price-now">59,99 €</span><span class="price-old">79,99 €</span></div>
+        <button class="add-cart btn-c2" onclick="addToCart('BRISE Lite',59.99)">In den Warenkorb</button>
       </div>
     </div>
 
-    <!-- Card 3 -->
     <div class="product-card">
       <div class="card-badge" style="background:linear-gradient(135deg,#ec4899,#7c3aed)">Premium</div>
       <div class="card-img card-img-3">
-        <div class="glow"></div>
-        <span class="card-emoji">⚡</span>
+        <div class="card-glow" style="background:var(--pink)"></div>
+        <div id="card-fan-3"></div>
       </div>
       <div class="card-body">
         <div class="card-tag tag-pink">Ultra Edition</div>
         <div class="card-title">BRISE AUTOCHARGE Ultra</div>
         <div class="card-desc">Maximale Leistung mit Dual-Solarpanel und XXL-Akku. Mit Smart-App-Steuerung, Timer und Schlafmodus.</div>
-        <div class="stars">★★★★★ <span style="color:#666;font-size:.8rem;">(63 Bewertungen)</span></div>
-        <div class="card-price">
-          <span class="price-now">139,99 €</span>
-          <span class="price-old">189,99 €</span>
-        </div>
-        <button class="add-cart btn-c3" onclick="addToCart('BRISE Ultra', 139.99)">In den Warenkorb</button>
+        <div class="stars">★★★★★ <span style="color:#666;font-size:.8rem;">(63)</span></div>
+        <div class="card-price"><span class="price-now">139,99 €</span><span class="price-old">189,99 €</span></div>
+        <button class="add-cart btn-c3" onclick="addToCart('BRISE Ultra',139.99)">In den Warenkorb</button>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- Features -->
+<!-- FEATURES -->
 <section class="features-section">
   <h2 class="section-title"><span>Warum BRISE?</span></h2>
   <div class="features-grid">
-
-    <div class="feature-card fc-1">
-      <div class="feature-icon fi-1">☀️</div>
-      <h3>Solar Power</h3>
-      <p>Hocheffizientes Solarmodul wandelt Sonnenlicht direkt in Energie um – völlig kostenlos und unbegrenzt.</p>
-    </div>
-
-    <div class="feature-card fc-2">
-      <div class="feature-icon fi-2">🔋</div>
-      <h3>Rechargeable Battery</h3>
-      <p>Integrierter Li-Ion Akku speichert Energie für Stunden des Betriebs – auch nachts oder bei bewölktem Himmel.</p>
-    </div>
-
-    <div class="feature-card fc-3">
-      <div class="feature-icon fi-3">💨</div>
-      <h3>Powerful Airflow</h3>
-      <p>Leiser, starker und effizienter Luftstrom dank aerodynamisch optimierter Turbinenflügel.</p>
-    </div>
-
-    <div class="feature-card fc-4">
-      <div class="feature-icon fi-4">💡</div>
-      <h3>LED Indicator</h3>
-      <p>Echtzeit-Akku­status auf einen Blick – nie wieder überraschend leere Batterie.</p>
-    </div>
-
-    <div class="feature-card fc-5">
-      <div class="feature-icon fi-5">♻️</div>
-      <h3>Sustainable Energy</h3>
-      <p>Sauber. Erneuerbar. Zuverlässig. BRISE ist dein Beitrag zu einer grüneren Zukunft.</p>
-    </div>
-
+    <div class="feature-card fc-1"><div class="feature-icon fi-1">☀️</div><h3>Solar Power</h3><p>Hocheffizientes Solarmodul wandelt Sonnenlicht direkt in Energie um – völlig kostenlos und unbegrenzt.</p></div>
+    <div class="feature-card fc-2"><div class="feature-icon fi-2">🔋</div><h3>Rechargeable Battery</h3><p>Integrierter Li-Ion Akku speichert Energie für Stunden – auch nachts oder bei bewölktem Himmel.</p></div>
+    <div class="feature-card fc-3"><div class="feature-icon fi-3">💨</div><h3>Powerful Airflow</h3><p>Leiser, starker und effizienter Luftstrom dank aerodynamisch optimierter Turbinenflügel.</p></div>
+    <div class="feature-card fc-4"><div class="feature-icon fi-4">💡</div><h3>LED Indicator</h3><p>Echtzeit-Akkustatus auf einen Blick – nie wieder überraschend leere Batterie.</p></div>
+    <div class="feature-card fc-5"><div class="feature-icon fi-5">♻️</div><h3>Sustainable Energy</h3><p>Sauber. Erneuerbar. Zuverlässig. BRISE ist dein Beitrag zu einer grüneren Zukunft.</p></div>
   </div>
 </section>
 
-<!-- Specs -->
+<!-- SPECS -->
 <section class="specs-section">
   <h2 class="section-title"><span>Technische Daten</span></h2>
   <div class="specs-container">
@@ -755,47 +321,25 @@
   </div>
 </section>
 
-<!-- Reviews -->
+<!-- REVIEWS -->
 <section class="reviews-section">
   <h2 class="section-title"><span>Kundenbewertungen</span></h2>
   <div class="reviews-grid">
-
     <div class="review-card rc-1">
-      <div class="review-header">
-        <div class="reviewer-avatar av-1">S</div>
-        <div>
-          <div class="reviewer-name">Sophie K.</div>
-          <div class="reviewer-date">März 2025</div>
-        </div>
-      </div>
+      <div class="review-header"><div class="reviewer-avatar av-1">S</div><div><div class="reviewer-name">Sophie K.</div><div class="reviewer-date">März 2025</div></div></div>
       <div class="review-stars">★★★★★</div>
       <p class="review-text">„Absolut begeistert! Hab den BRISE Pro auf einem Festival benutzt – drei Tage lang ohne Steckdose. Einfach genial."</p>
     </div>
-
     <div class="review-card rc-2">
-      <div class="review-header">
-        <div class="reviewer-avatar av-2">M</div>
-        <div>
-          <div class="reviewer-name">Markus T.</div>
-          <div class="reviewer-date">April 2025</div>
-        </div>
-      </div>
+      <div class="review-header"><div class="reviewer-avatar av-2">M</div><div><div class="reviewer-name">Markus T.</div><div class="reviewer-date">April 2025</div></div></div>
       <div class="review-stars">★★★★★</div>
       <p class="review-text">„Für mein Homeoffice der perfekte Begleiter. Leise, stark, und das Solar-Feature macht ihn komplett unabhängig."</p>
     </div>
-
     <div class="review-card rc-3">
-      <div class="review-header">
-        <div class="reviewer-avatar av-3">L</div>
-        <div>
-          <div class="reviewer-name">Lena R.</div>
-          <div class="reviewer-date">Mai 2025</div>
-        </div>
-      </div>
+      <div class="review-header"><div class="reviewer-avatar av-3">L</div><div><div class="reviewer-name">Lena R.</div><div class="reviewer-date">Mai 2025</div></div></div>
       <div class="review-stars">★★★★☆</div>
       <p class="review-text">„Tolles Design, super Verarbeitung. Hätte mir noch eine App-Steuerung gewünscht – aber sonst 10/10!"</p>
     </div>
-
   </div>
 </section>
 
@@ -804,52 +348,242 @@
   <h2>Bleib cool –<br><span style="background:linear-gradient(90deg,var(--yellow),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">powered by the sun.</span></h2>
   <p>Jetzt bestellen und 30% Sommer-Rabatt sichern. Nur für kurze Zeit!</p>
   <div class="cta-buttons">
-    <button class="btn-cta-1" onclick="addToCart('BRISE Pro', 89.99)">☀️ Jetzt kaufen</button>
+    <button class="btn-cta-1" onclick="addToCart('BRISE Pro',89.99)">☀️ Jetzt kaufen</button>
     <button class="btn-cta-2">📦 Bundle entdecken</button>
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="footer-logo">⚡ BRISE AUTOCHARGE</div>
   <div class="footer-links">
-    <a href="#">Impressum</a>
-    <a href="#">Datenschutz</a>
-    <a href="#">AGB</a>
-    <a href="#">Versand</a>
-    <a href="#">Kontakt</a>
-    <a href="#">FAQ</a>
+    <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">AGB</a>
+    <a href="#">Versand</a><a href="#">Kontakt</a><a href="#">FAQ</a>
   </div>
   <div class="footer-copy">© 2025 BRISE AUTOCHARGE. Alle Rechte vorbehalten. Clean. Renewable. Reliable.</div>
 </footer>
 
-<!-- Toast -->
-<div class="toast" id="toast">✅ Produkt zum Warenkorb hinzugefügt!</div>
+<div class="toast" id="toast"></div>
 
 <script>
-  let cartCount = 0;
+/* ─────────────────────────────────────────────
+   FAN SVG GENERATOR
+   Generates a realistic BRISE fan illustration.
+   cx,cy = fan center | r = blade area radius
+───────────────────────────────────────────── */
+function buildFan({ id, W, H, cx, cy, r, handle, base, glowColor = '#7c3aed' }) {
+  const hubR   = r * 0.29;   // center hub radius
+  const ringR  = r * 1.10;   // outer housing ring
+  const N      = 17;         // number of blades
+  const step   = 360 / N;
 
-  function addToCart(name, price) {
-    cartCount++;
-    document.getElementById('cart-count').textContent = `(${cartCount})`;
-    showToast(`${name} – ${price.toFixed(2)} € hinzugefügt!`);
+  /* Blade path defined at origin (0,0), pointing up.
+     Translates to (cx,cy) then rotates per blade. */
+  const H_HUB = hubR + 7;
+  const H_RIM = r - 2;
+  const blade = `M 8,-${H_HUB.toFixed(1)} C 16,-${(H_HUB+36).toFixed(1)} 21,-${(H_HUB+78).toFixed(1)} 22,-${H_RIM.toFixed(1)} C 18,-${(H_RIM+10).toFixed(1)} 6,-${(H_RIM+11).toFixed(1)} -2,-${(H_RIM+7).toFixed(1)} C -12,-${(H_RIM-1).toFixed(1)} -14,-${(H_HUB+76).toFixed(1)} -7,-${(H_HUB+9).toFixed(1)} Z`;
+
+  /* Directional lighting: upper-left at -45° */
+  const LX = Math.cos(-0.785), LY = Math.sin(-0.785);
+  const blades = Array.from({ length: N }, (_, i) => {
+    const deg = i * step;
+    const rad = deg * Math.PI / 180;
+    /* face direction = perpendicular to radial direction */
+    const fx = Math.cos(rad + Math.PI / 2);
+    const fy = Math.sin(rad + Math.PI / 2);
+    const dot = fx * LX + fy * LY;                       // –1..1
+    const lv = Math.round(36 + (dot + 1) / 2 * 30);     // 36..66
+    return `<path transform="translate(${cx},${cy}) rotate(${deg.toFixed(2)})"
+      d="${blade}" fill="rgb(${lv},${lv},${lv})" stroke="#111" stroke-width="0.7"/>`;
+  }).join('\n');
+
+  /* Bolt markers at 8 positions around the outer ring */
+  const bolts = Array.from({ length: 8 }, (_, i) => {
+    const a = (i * 45 - 90) * Math.PI / 180;
+    const bx = (cx + (ringR + 12) * Math.cos(a)).toFixed(1);
+    const by = (cy + (ringR + 12) * Math.sin(a)).toFixed(1);
+    return `<circle cx="${bx}" cy="${by}" r="5" fill="#0d0d0d" stroke="#1e1e1e" stroke-width="1.5"/>
+            <circle cx="${bx}" cy="${by}" r="2" fill="#161616"/>`;
+  }).join('\n');
+
+  /* Handle (U-arch above fan) */
+  const handleSVG = handle ? `
+  <path d="M ${cx-48},${cy-ringR-4} L ${cx-48},${cy-ringR-48}
+           Q ${cx-48},${cy-ringR-64} ${cx-32},${cy-ringR-66}
+           L ${cx+32},${cy-ringR-66}
+           Q ${cx+48},${cy-ringR-64} ${cx+48},${cy-ringR-48}
+           L ${cx+48},${cy-ringR-4}"
+    stroke="#181818" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- grip ridges -->
+  ${Array.from({length:5},(_,i)=>`<line x1="${cx-20+i*11}" y1="${cy-ringR-76}" x2="${cx-20+i*11}" y2="${cy-ringR-56}" stroke="#111" stroke-width="3" stroke-linecap="round"/>`).join('')}
+  <path d="M ${cx-38},${cy-ringR-52} Q ${cx},${cy-ringR-64} ${cx+38},${cy-ringR-52}" stroke="#222" stroke-width="2" fill="none"/>
+  ` : '';
+
+  /* Pivots + support arms connecting fan to base */
+  const baseY = cy + ringR + 18;
+  const pivotSVG = base ? `
+  <!-- left arm -->
+  <path d="M ${cx-ringR-4},${cy+8} Q ${cx-ringR+5},${baseY-8} ${cx - r*0.9 - 10},${baseY}"
+    stroke="#141414" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <circle cx="${cx-ringR-4}" cy="${cy}" r="15" fill="#0e0e0e" stroke="#1a1a1a" stroke-width="1.5"/>
+  <circle cx="${cx-ringR-4}" cy="${cy}" r="6"  fill="#151515"/>
+  <!-- right arm with tilt knob -->
+  <path d="M ${cx+ringR+4},${cy+8} Q ${cx+ringR-5},${baseY-8} ${cx + r*0.9 + 10},${baseY}"
+    stroke="#141414" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <circle cx="${cx+ringR+4}" cy="${cy}" r="20" fill="#0d0d0d" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="${cx+ringR+4}" cy="${cy}" r="12" fill="#121212" stroke="#1c1c1c" stroke-width="1"/>
+  <circle cx="${cx+ringR+4}" cy="${cy}" r="5"  fill="#181818"/>
+  ` : '';
+
+  /* Solar base */
+  const bW = ringR * 2 + 60, bH = 98;
+  const bX = cx - bW / 2;
+  const sX = bX + 10, sY = baseY + 42, sW = bW - 20, sH = 46;
+
+  const solarGrid = [
+    ...[14, 28].map(dy => `<line x1="${sX}" y1="${sY+dy}" x2="${sX+sW}" y2="${sY+dy}" stroke="#09091f" stroke-width="1"/>`),
+    ...Array.from({length: Math.floor(sW/22)-1}, (_,i) =>
+      `<line x1="${sX+22+i*22}" y1="${sY}" x2="${sX+22+i*22}" y2="${sY+sH}" stroke="#09091f" stroke-width="1"/>`)
+  ].join('\n');
+
+  /* Sun-button rays */
+  const sunX = bX + 26, sunY = baseY + 22;
+  const rays = Array.from({length:8}, (_,i) => {
+    const a = i * 45 * Math.PI / 180;
+    return `<line x1="${(sunX+7*Math.cos(a)).toFixed(1)}" y1="${(sunY+7*Math.sin(a)).toFixed(1)}"
+              x2="${(sunX+9.5*Math.cos(a)).toFixed(1)}" y2="${(sunY+9.5*Math.sin(a)).toFixed(1)}"
+              stroke="#777" stroke-width="1.2" stroke-linecap="round"/>`;
+  }).join('');
+
+  /* 5 LED dots */
+  const leds = Array.from({length:5}, (_,i) => {
+    const lx = cx - 44 + i * 20, ly = baseY + 22;
+    const on = i < 4;
+    return `<circle cx="${lx}" cy="${ly}" r="5.5" fill="${on ? '#003a10' : '#001508'}"/>
+            <circle cx="${lx}" cy="${ly}" r="4"   fill="${on ? '#00dd44' : '#001a08'}" opacity="${on ? .9 : .3}"/>
+            <circle cx="${lx}" cy="${ly}" r="2"   fill="${on ? '#88ffaa' : '#002a0e'}" opacity="${on ? .7 : .2}"/>`;
+  }).join('\n');
+
+  const baseSVG = base ? `
+  <!-- shadow -->
+  <rect x="${bX+5}" y="${baseY+5}" width="${bW}" height="${bH}" rx="12" fill="rgba(0,0,0,.5)"/>
+  <!-- body -->
+  <rect x="${bX}" y="${baseY}" width="${bW}" height="${bH}" rx="12" fill="#0e0e0e" stroke="#181818" stroke-width="1.5"/>
+  <!-- control strip -->
+  <rect x="${bX+10}" y="${baseY+8}" width="${bW-20}" height="32" rx="7" fill="#080808"/>
+  <!-- sun button -->
+  <rect x="${bX+14}" y="${baseY+10}" width="24" height="24" rx="5" fill="#111" stroke="#1d1d1d" stroke-width="1"/>
+  <circle cx="${sunX}" cy="${sunY}" r="5" fill="none" stroke="#777" stroke-width="1.5"/>
+  ${rays}
+  <!-- LEDs -->
+  ${leds}
+  <!-- battery button -->
+  <rect x="${cx+33}" y="${baseY+10}" width="24" height="24" rx="5" fill="#111" stroke="#1d1d1d" stroke-width="1"/>
+  <rect x="${cx+36}" y="${baseY+15}" width="13" height="9" rx="2" fill="none" stroke="#777" stroke-width="1.5"/>
+  <rect x="${cx+49}" y="${baseY+18}" width="2.5" height="5" rx="1" fill="#777"/>
+  <rect x="${cx+37}" y="${baseY+16}" width="5" height="7" rx="1" fill="#3a3a3a"/>
+  <!-- solar panel -->
+  <rect x="${sX}" y="${sY}" width="${sW}" height="${sH}" rx="5" fill="#050512"/>
+  ${solarGrid}
+  <rect x="${sX}" y="${sY}" width="${sW*0.35}" height="${sH}" rx="5" fill="rgba(20,50,160,.07)"/>
+  ` : '';
+
+  const totalH = base ? baseY + bH + 16 : H;
+
+  return `<svg width="${W}" height="${totalH}" viewBox="0 0 ${W} ${totalH}" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:100%">
+  <defs>
+    <radialGradient id="${id}bg" cx="42%" cy="38%" r="58%">
+      <stop offset="0%"   stop-color="#222"/>
+      <stop offset="55%"  stop-color="#181818"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </radialGradient>
+    <clipPath id="${id}clip"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
+  </defs>
+
+  ${handleSVG}
+  ${pivotSVG}
+
+  <!-- outer housing -->
+  <circle cx="${cx}" cy="${cy}" r="${ringR+17}" fill="#080808"/>
+  <circle cx="${cx}" cy="${cy}" r="${ringR+12}" fill="#0d0d0d"/>
+  <circle cx="${cx}" cy="${cy}" r="${ringR+7}"  fill="#111"/>
+  <circle cx="${cx}" cy="${cy}" r="${ringR+2}"  fill="#0d0d0d"/>
+  <circle cx="${cx}" cy="${cy}" r="${ringR}"    fill="#111" stroke="#252525" stroke-width="3"/>
+  ${bolts}
+
+  <!-- fan face -->
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#${id}bg)"/>
+
+  <!-- blades -->
+  <g clip-path="url(#${id}clip)">${blades}</g>
+
+  <!-- hub overlay (smooth blade roots) -->
+  <circle cx="${cx}" cy="${cy}" r="${hubR+10}" fill="url(#${id}bg)"/>
+
+  <!-- hub detail -->
+  <circle cx="${cx}" cy="${cy}" r="${hubR+5}" fill="#0c0c0c" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="${cx}" cy="${cy}" r="${hubR}"   fill="#151515"/>
+  <circle cx="${cx}" cy="${cy}" r="${hubR-3}" fill="#111" stroke="#1e1e1e" stroke-width="0.5"/>
+
+  <!-- BRISE label -->
+  <text x="${cx}" y="${cy+2}" text-anchor="middle"
+    font-family="'Segoe UI',Arial,sans-serif" font-size="${r*0.085}" font-weight="600"
+    fill="#5a5a5a" letter-spacing="${r*0.018}"
+    style="letter-spacing:${r*0.018}px">BRISE</text>
+  <text x="${cx}" y="${cy+r*0.1}" text-anchor="middle"
+    font-family="'Segoe UI',Arial,sans-serif" font-size="${r*0.043}" fill="#3a3a3a"
+    letter-spacing="1.5">AUTOCHARGE</text>
+
+  ${baseSVG}
+</svg>`;
+}
+
+/* ── inject SVGs on load ── */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* Hero: full fan with handle + base */
+  const heroEl = document.getElementById('hero-fan');
+  if (heroEl) {
+    heroEl.innerHTML = buildFan({
+      id:'h', W:460, H:100, cx:230, cy:255,
+      r:155, handle:true, base:true
+    });
   }
 
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = '✅ ' + msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
-  }
+  /* Card fans: compact (no handle, no base) */
+  const cardCfgs = [
+    { id:'c1', el:'card-fan-1', glow:'#7c3aed' },
+    { id:'c2', el:'card-fan-2', glow:'#10b981' },
+    { id:'c3', el:'card-fan-3', glow:'#ec4899' },
+  ];
+  cardCfgs.forEach(({ id, el }) => {
+    const node = document.getElementById(el);
+    if (!node) return;
+    node.innerHTML = buildFan({
+      id, W:200, H:200, cx:100, cy:100,
+      r:88, handle:false, base:false
+    });
+  });
 
-  function showCart() {
-    if (cartCount === 0) {
-      showToast('Dein Warenkorb ist noch leer.');
-    } else {
-      showToast(`Du hast ${cartCount} Artikel im Warenkorb.`);
-    }
-  }
+});
+
+/* ── cart ── */
+let cartCount = 0;
+function addToCart(name, price) {
+  cartCount++;
+  document.getElementById('cart-count').textContent = `(${cartCount})`;
+  showToast(`${name} – ${price.toFixed(2).replace('.',',')} € hinzugefügt!`);
+}
+function showCart() {
+  showToast(cartCount === 0
+    ? 'Dein Warenkorb ist noch leer.'
+    : `Du hast ${cartCount} Artikel im Warenkorb.`);
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = '✅ ' + msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
 </script>
-
 </body>
 </html>
