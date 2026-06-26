@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRISE AUTOCHARGE – Solar Fan Shop</title>
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --pink:   #ec4899;
+      --cyan:   #06b6d4;
+      --yellow: #f59e0b;
+      --green:  #10b981;
+      --orange: #f97316;
+      --red:    #ef4444;
+      --blue:   #3b82f6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--purple), var(--pink), var(--cyan));
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 30px rgba(124,58,237,0.5);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px rgba(255,255,255,0.8);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: opacity .2s;
+    }
+    nav a:hover { opacity: .75; }
+
+    .cart-btn {
+      background: #fff;
+      color: var(--purple);
+      border: none;
+      padding: .5rem 1.2rem;
+      border-radius: 99px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: .9rem;
+      transition: transform .2s;
+    }
+    .cart-btn:hover { transform: scale(1.05); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #1a0033, #001a3a, #003322);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(124,58,237,.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--yellow), var(--orange));
+      color: #000;
+      font-weight: 800;
+      font-size: .75rem;
+      letter-spacing: 2px;
+      padding: .35rem 1rem;
+      border-radius: 99px;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--cyan), var(--purple), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: #aaa;
+      font-size: 1.15rem;
+      max-width: 550px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: #fff;
+      border: none;
+      padding: .9rem 2.5rem;
+      border-radius: 99px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 30px rgba(236,72,153,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(236,72,153,.6); }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.3);
+      padding: .9rem 2.5rem;
+      border-radius: 99px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--cyan); background: rgba(6,182,212,.1); }
+
+    /* ── PRODUCT CARD ── */
+    .product-section {
+      padding: 5rem 2rem;
+      background: #111;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+    }
+    .section-title span {
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: linear-gradient(145deg, #1c1c1c, #222);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 800;
+      padding: .3rem .8rem;
+      border-radius: 99px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-img-1 { background: linear-gradient(135deg, #1a0050, #003366); }
+    .card-img-2 { background: linear-gradient(135deg, #003322, #001a3a); }
+    .card-img-3 { background: linear-gradient(135deg, #330022, #1a0033); }
+
+    .card-img .glow {
+      position: absolute;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: .6;
+    }
+    .card-img-1 .glow { background: var(--purple); }
+    .card-img-2 .glow { background: var(--green); }
+    .card-img-3 .glow { background: var(--pink); }
+
+    .card-emoji { position: relative; z-index: 1; }
+
+    .card-body { padding: 1.5rem; }
+
+    .card-tag {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    .tag-purple { color: var(--purple); }
+    .tag-green  { color: var(--green); }
+    .tag-pink   { color: var(--pink); }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+    }
+
+    .card-desc {
+      color: #888;
+      font-size: .88rem;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-price {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .price-now {
+      font-size: 1.6rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--yellow), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .price-old {
+      font-size: .95rem;
+      color: #555;
+      text-decoration: line-through;
+    }
+
+    .stars { color: var(--yellow); font-size: .9rem; margin-bottom: 1rem; }
+
+    .add-cart {
+      width: 100%;
+      padding: .8rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, opacity .2s;
+    }
+    .add-cart:hover { transform: scale(1.02); opacity: .9; }
+
+    .btn-c1 { background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #fff; }
+    .btn-c2 { background: linear-gradient(135deg, var(--green), var(--cyan)); color: #fff; }
+    .btn-c3 { background: linear-gradient(135deg, var(--pink), var(--orange)); color: #fff; }
+
+    /* ── FEATURES ── */
+    .features-section {
+      padding: 5rem 2rem;
+      background: linear-gradient(180deg, #0a001a, #000a1a, #000d0a);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform .3s, border-color .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .feature-card:hover { transform: translateY(-5px); }
+    .feature-card:hover::before { opacity: 1; }
+
+    .fc-1::before { background: linear-gradient(135deg, rgba(245,158,11,.08), transparent); }
+    .fc-2::before { background: linear-gradient(135deg, rgba(59,130,246,.08), transparent); }
+    .fc-3::before { background: linear-gradient(135deg, rgba(16,185,129,.08), transparent); }
+    .fc-4::before { background: linear-gradient(135deg, rgba(124,58,237,.08), transparent); }
+    .fc-5::before { background: linear-gradient(135deg, rgba(236,72,153,.08), transparent); }
+
+    .fc-1:hover { border-color: var(--yellow); }
+    .fc-2:hover { border-color: var(--blue); }
+    .fc-3:hover { border-color: var(--green); }
+    .fc-4:hover { border-color: var(--purple); }
+    .fc-5:hover { border-color: var(--pink); }
+
+    .feature-icon {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1rem;
+    }
+
+    .fi-1 { background: linear-gradient(135deg, var(--yellow), var(--orange)); }
+    .fi-2 { background: linear-gradient(135deg, var(--blue), var(--cyan)); }
+    .fi-3 { background: linear-gradient(135deg, var(--green), var(--cyan)); }
+    .fi-4 { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+    .fi-5 { background: linear-gradient(135deg, var(--pink), var(--red)); }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .feature-card p { color: #777; font-size: .85rem; line-height: 1.6; position: relative; z-index: 1; }
+    .feature-card h3 { position: relative; z-index: 1; }
+    .feature-icon { position: relative; z-index: 1; }
+
+    /* ── SPECS ── */
+    .specs-section {
+      padding: 5rem 2rem;
+      background: #111;
+    }
+
+    .specs-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .spec-label { color: #777; font-size: .88rem; }
+    .spec-value { font-weight: 700; font-size: .95rem; }
+
+    .sv-1 { color: var(--yellow); }
+    .sv-2 { color: var(--cyan); }
+    .sv-3 { color: var(--green); }
+    .sv-4 { color: var(--purple); }
+    .sv-5 { color: var(--pink); }
+    .sv-6 { color: var(--orange); }
+
+    /* ── REVIEWS ── */
+    .reviews-section {
+      padding: 5rem 2rem;
+      background: linear-gradient(180deg, #080010, #000810);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .review-card {
+      padding: 1.8rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.07);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rc-1 { background: linear-gradient(145deg, rgba(124,58,237,.15), rgba(236,72,153,.08)); }
+    .rc-2 { background: linear-gradient(145deg, rgba(6,182,212,.15), rgba(59,130,246,.08)); }
+    .rc-3 { background: linear-gradient(145deg, rgba(16,185,129,.15), rgba(245,158,11,.08)); }
+
+    .review-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+
+    .reviewer-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .av-1 { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+    .av-2 { background: linear-gradient(135deg, var(--cyan), var(--blue)); }
+    .av-3 { background: linear-gradient(135deg, var(--green), var(--yellow)); }
+
+    .reviewer-name { font-weight: 700; font-size: .95rem; }
+    .reviewer-date { color: #666; font-size: .78rem; margin-top: .1rem; }
+
+    .review-stars { color: var(--yellow); font-size: .85rem; margin-bottom: .8rem; }
+    .review-text { color: #999; font-size: .88rem; line-height: 1.7; }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 6rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, #1a0033, #00123a, #002211);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%,
+        rgba(124,58,237,.2),
+        rgba(6,182,212,.1),
+        transparent);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .cta-section p {
+      color: #aaa;
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn-cta-1 {
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: #000;
+      border: none;
+      padding: 1rem 3rem;
+      border-radius: 99px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 0 40px rgba(245,158,11,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-cta-1:hover { transform: scale(1.05); box-shadow: 0 0 60px rgba(245,158,11,.6); }
+
+    .btn-cta-2 {
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #fff;
+      border: none;
+      padding: 1rem 3rem;
+      border-radius: 99px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 0 40px rgba(6,182,212,.3);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-cta-2:hover { transform: scale(1.05); box-shadow: 0 0 60px rgba(6,182,212,.5); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080808;
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--purple), var(--cyan), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .footer-links a {
+      color: #666;
+      text-decoration: none;
+      font-size: .88rem;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--cyan); }
+
+    .footer-copy { color: #444; font-size: .8rem; }
+
+    /* ── CART TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      color: #fff;
+      padding: 1rem 1.8rem;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: .95rem;
+      box-shadow: 0 8px 30px rgba(16,185,129,.4);
+      transform: translateY(120%);
+      opacity: 0;
+      transition: transform .3s ease, opacity .3s ease;
+      z-index: 999;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ── BANNER ── */
+    .promo-banner {
+      background: linear-gradient(90deg, var(--purple), var(--pink), var(--cyan), var(--green), var(--yellow), var(--orange), var(--pink), var(--purple));
+      background-size: 300% 100%;
+      animation: shift 5s linear infinite;
+      padding: .6rem 1rem;
+      text-align: center;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    @keyframes shift {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    @media (max-width: 640px) {
+      .specs-container { grid-template-columns: 1fr; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Promo Banner -->
+<div class="promo-banner">
+  ☀️ SOMMER SALE – BIS ZU 30% RABATT &nbsp;|&nbsp; KOSTENLOSER VERSAND AB 49€ &nbsp;|&nbsp; NACHHALTIG &amp; ZUKUNFTSSICHER ☀️
+</div>
+
+<!-- Header -->
+<header>
+  <div class="logo">⚡ BRISE</div>
+  <nav>
+    <a href="#">Shop</a>
+    <a href="#">Features</a>
+    <a href="#">Bewertungen</a>
+    <a href="#">FAQ</a>
+  </nav>
+  <button class="cart-btn" onclick="showCart()">🛒 Warenkorb <span id="cart-count">(0)</span></button>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">🌱 Eco-Tech 2025</div>
+  <h1>BRISE AUTOCHARGE<br>Solar Fan</h1>
+  <p>Der einzige Ventilator, der sich selbst auflädt. Solarenergie trifft auf kraftvollen Luftstrom – für drinnen und draußen.</p>
+  <div class="hero-buttons">
+    <button class="btn-primary" onclick="addToCart('BRISE Pro', 89.99)">Jetzt kaufen – 89,99 €</button>
+    <button class="btn-secondary">Mehr erfahren ↓</button>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="product-section">
+  <h2 class="section-title"><span>Unsere Produkte</span></h2>
+  <div class="product-grid">
+
+    <!-- Card 1 -->
+    <div class="product-card">
+      <div class="card-badge">Bestseller</div>
+      <div class="card-img card-img-1">
+        <div class="glow"></div>
+        <span class="card-emoji">🌀</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag tag-purple">Solar Edition</div>
+        <div class="card-title">BRISE AUTOCHARGE Pro</div>
+        <div class="card-desc">Mit integriertem Hochleistungs-Solarmodul. Ideal für Camping, Terrasse und Büro. Li-Ion Akku für 20+ Stunden Laufzeit.</div>
+        <div class="stars">★★★★★ <span style="color:#666;font-size:.8rem;">(284 Bewertungen)</span></div>
+        <div class="card-price">
+          <span class="price-now">89,99 €</span>
+          <span class="price-old">129,99 €</span>
+        </div>
+        <button class="add-cart btn-c1" onclick="addToCart('BRISE Pro', 89.99)">In den Warenkorb</button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="product-card">
+      <div class="card-badge" style="background:linear-gradient(135deg,#10b981,#06b6d4)">Neu</div>
+      <div class="card-img card-img-2">
+        <div class="glow"></div>
+        <span class="card-emoji">💨</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag tag-green">Eco Edition</div>
+        <div class="card-title">BRISE AUTOCHARGE Lite</div>
+        <div class="card-desc">Kompakt und leicht – perfekt für unterwegs. USB-C Schnellladung + Solar-Backup. 3 Stufen, 360° Rotation.</div>
+        <div class="stars">★★★★☆ <span style="color:#666;font-size:.8rem;">(117 Bewertungen)</span></div>
+        <div class="card-price">
+          <span class="price-now">59,99 €</span>
+          <span class="price-old">79,99 €</span>
+        </div>
+        <button class="add-cart btn-c2" onclick="addToCart('BRISE Lite', 59.99)">In den Warenkorb</button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="product-card">
+      <div class="card-badge" style="background:linear-gradient(135deg,#ec4899,#7c3aed)">Premium</div>
+      <div class="card-img card-img-3">
+        <div class="glow"></div>
+        <span class="card-emoji">⚡</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag tag-pink">Ultra Edition</div>
+        <div class="card-title">BRISE AUTOCHARGE Ultra</div>
+        <div class="card-desc">Maximale Leistung mit Dual-Solarpanel und XXL-Akku. Mit Smart-App-Steuerung, Timer und Schlafmodus.</div>
+        <div class="stars">★★★★★ <span style="color:#666;font-size:.8rem;">(63 Bewertungen)</span></div>
+        <div class="card-price">
+          <span class="price-now">139,99 €</span>
+          <span class="price-old">189,99 €</span>
+        </div>
+        <button class="add-cart btn-c3" onclick="addToCart('BRISE Ultra', 139.99)">In den Warenkorb</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features-section">
+  <h2 class="section-title"><span>Warum BRISE?</span></h2>
+  <div class="features-grid">
+
+    <div class="feature-card fc-1">
+      <div class="feature-icon fi-1">☀️</div>
+      <h3>Solar Power</h3>
+      <p>Hocheffizientes Solarmodul wandelt Sonnenlicht direkt in Energie um – völlig kostenlos und unbegrenzt.</p>
+    </div>
+
+    <div class="feature-card fc-2">
+      <div class="feature-icon fi-2">🔋</div>
+      <h3>Rechargeable Battery</h3>
+      <p>Integrierter Li-Ion Akku speichert Energie für Stunden des Betriebs – auch nachts oder bei bewölktem Himmel.</p>
+    </div>
+
+    <div class="feature-card fc-3">
+      <div class="feature-icon fi-3">💨</div>
+      <h3>Powerful Airflow</h3>
+      <p>Leiser, starker und effizienter Luftstrom dank aerodynamisch optimierter Turbinenflügel.</p>
+    </div>
+
+    <div class="feature-card fc-4">
+      <div class="feature-icon fi-4">💡</div>
+      <h3>LED Indicator</h3>
+      <p>Echtzeit-Akku­status auf einen Blick – nie wieder überraschend leere Batterie.</p>
+    </div>
+
+    <div class="feature-card fc-5">
+      <div class="feature-icon fi-5">♻️</div>
+      <h3>Sustainable Energy</h3>
+      <p>Sauber. Erneuerbar. Zuverlässig. BRISE ist dein Beitrag zu einer grüneren Zukunft.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Specs -->
+<section class="specs-section">
+  <h2 class="section-title"><span>Technische Daten</span></h2>
+  <div class="specs-container">
+    <div class="spec-row"><span class="spec-label">Akku-Kapazität</span><span class="spec-value sv-1">10.000 mAh</span></div>
+    <div class="spec-row"><span class="spec-label">Solar-Leistung</span><span class="spec-value sv-2">5W Hocheffizienz</span></div>
+    <div class="spec-row"><span class="spec-label">Laufzeit (Akku)</span><span class="spec-value sv-3">Bis zu 20 Std.</span></div>
+    <div class="spec-row"><span class="spec-label">Lautstärke</span><span class="spec-value sv-4">≤ 35 dB</span></div>
+    <div class="spec-row"><span class="spec-label">Ladezeit (USB-C)</span><span class="spec-value sv-5">~3,5 Stunden</span></div>
+    <div class="spec-row"><span class="spec-label">Gewicht</span><span class="spec-value sv-6">860 g</span></div>
+    <div class="spec-row"><span class="spec-label">Stufen</span><span class="spec-value sv-1">3 Geschwindigkeiten</span></div>
+    <div class="spec-row"><span class="spec-label">Neigung</span><span class="spec-value sv-2">180° verstellbar</span></div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews-section">
+  <h2 class="section-title"><span>Kundenbewertungen</span></h2>
+  <div class="reviews-grid">
+
+    <div class="review-card rc-1">
+      <div class="review-header">
+        <div class="reviewer-avatar av-1">S</div>
+        <div>
+          <div class="reviewer-name">Sophie K.</div>
+          <div class="reviewer-date">März 2025</div>
+        </div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Absolut begeistert! Hab den BRISE Pro auf einem Festival benutzt – drei Tage lang ohne Steckdose. Einfach genial."</p>
+    </div>
+
+    <div class="review-card rc-2">
+      <div class="review-header">
+        <div class="reviewer-avatar av-2">M</div>
+        <div>
+          <div class="reviewer-name">Markus T.</div>
+          <div class="reviewer-date">April 2025</div>
+        </div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Für mein Homeoffice der perfekte Begleiter. Leise, stark, und das Solar-Feature macht ihn komplett unabhängig."</p>
+    </div>
+
+    <div class="review-card rc-3">
+      <div class="review-header">
+        <div class="reviewer-avatar av-3">L</div>
+        <div>
+          <div class="reviewer-name">Lena R.</div>
+          <div class="reviewer-date">Mai 2025</div>
+        </div>
+      </div>
+      <div class="review-stars">★★★★☆</div>
+      <p class="review-text">„Tolles Design, super Verarbeitung. Hätte mir noch eine App-Steuerung gewünscht – aber sonst 10/10!"</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Bleib cool –<br><span style="background:linear-gradient(90deg,var(--yellow),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">powered by the sun.</span></h2>
+  <p>Jetzt bestellen und 30% Sommer-Rabatt sichern. Nur für kurze Zeit!</p>
+  <div class="cta-buttons">
+    <button class="btn-cta-1" onclick="addToCart('BRISE Pro', 89.99)">☀️ Jetzt kaufen</button>
+    <button class="btn-cta-2">📦 Bundle entdecken</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">⚡ BRISE AUTOCHARGE</div>
+  <div class="footer-links">
+    <a href="#">Impressum</a>
+    <a href="#">Datenschutz</a>
+    <a href="#">AGB</a>
+    <a href="#">Versand</a>
+    <a href="#">Kontakt</a>
+    <a href="#">FAQ</a>
+  </div>
+  <div class="footer-copy">© 2025 BRISE AUTOCHARGE. Alle Rechte vorbehalten. Clean. Renewable. Reliable.</div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast">✅ Produkt zum Warenkorb hinzugefügt!</div>
+
+<script>
+  let cartCount = 0;
+
+  function addToCart(name, price) {
+    cartCount++;
+    document.getElementById('cart-count').textContent = `(${cartCount})`;
+    showToast(`${name} – ${price.toFixed(2)} € hinzugefügt!`);
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = '✅ ' + msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  function showCart() {
+    if (cartCount === 0) {
+      showToast('Dein Warenkorb ist noch leer.');
+    } else {
+      showToast(`Du hast ${cartCount} Artikel im Warenkorb.`);
+    }
+  }
+</script>
+
+</body>
+</html>
